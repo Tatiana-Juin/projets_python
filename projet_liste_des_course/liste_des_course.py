@@ -48,6 +48,11 @@ while nb_saisie == 2:
     #boucle pour voir chaque ingredient 
     for item in tab_ingredient:
          print("mes ingredient",item)
+         
+         if item == ingredient_supprimer:
+              print("L'ingredient existe")
+         else:
+            print("L'ingredient existe pas ")
         
     
     #Permet a l'utilisateur de choisir le nb 
