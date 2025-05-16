@@ -1,7 +1,5 @@
 
 tab_ingredient = []
-#varibale au cas ou il est aucn ingredient
-nb_ingredient = 0
 #pour trouver index de l'element du tableau
 nb_iteration = 0;
 #pour savoir si l'ingredient a etait trouver 
@@ -27,21 +25,18 @@ while nb_saisie == 1:
     ingredient = str(input("Saisie ton ingredient ")).lower().strip()
   
     #cela ajoute obligatoirement l'element 
-    if nb_ingredient == 0:
+
+    #Si tab_ingredient n'a aucun element  : on met not car dans une condition tab_ingredient sans not est egale a True c'est pour cela qu'on met not 
+    if not tab_ingredient:
          tab_ingredient.append(ingredient)
-         nb_ingredient =  nb_ingredient+1
-         
-        
 
-
-    if ingredient in tab_ingredient:
+    elif ingredient in tab_ingredient :
          print("Tu as deja inserer cette ingredient ")
     else:
         tab_ingredient.append(ingredient)
-        nb_ingredient = nb_ingredient + 1
-        
+        print("Ingrédient inséré.")
 
-    #Cela permet d'inserer un nombre
+    #Cela permet d'inserer un nombre Superieur a 0 : si la liste d'ingredient n'est pas vide 
     if tab_ingredient :
          print("1 - ajouter un nouvelle ingredient") 
          print("2 supprimer")
@@ -59,20 +54,18 @@ while nb_saisie == 2:
           tab_ingredient.append(ingredient)
           nb_ingredient =  nb_ingredient+1
 
-#     print(tab_ingredient)
-#     print(nb_ingredient)
-    #
+
+    
     ingredient_supprimer = str(input("Ingredient à supprimer ")).lower().strip()
 
     #boucle pour voir chaque ingredient 
     for item in tab_ingredient:
-     #     print("mes ingredient",item)
+     
          nb_iteration +=1
          
          if item == ingredient_supprimer:
-             
               nb_iteration= nb_iteration -1
-          #     print("Le nb iteration",nb_iteration)
+          
               tab_ingredient.pop(nb_iteration)
               #renitialisation de la variable
               nb_iteration = 0
