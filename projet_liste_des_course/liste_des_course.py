@@ -55,7 +55,10 @@ while nb_saisie == 2:
          if item == ingredient_supprimer:
               print("L'ingredient existe")
               nb_iteration= nb_iteration -1
-              print("Le nb iteration",nb_iteration)
+          #     print("Le nb iteration",nb_iteration)
+              tab_ingredient.pop(nb_iteration)
+              #renitialisation de la variable
+              nb_iteration = 0
               ingredient_trouver = True;
               break
          
@@ -71,4 +74,4 @@ while nb_saisie == 2:
 
 
 
-print("nombre iteration ", nb_iteration)
+print("Ingredient  ", tab_ingredient)
