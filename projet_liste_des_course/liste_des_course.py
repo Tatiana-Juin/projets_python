@@ -1,7 +1,10 @@
 
 tab_ingredient = []
+#varibale au cas ou il est aucn ingredient
 nb_ingredient = 0
+#pour trouver index de l'element du tableau
 nb_iteration = 0;
+#pour savoir si l'ingredient a etait trouver 
 ingredient_trouver = False;
 
 print("Tu dois taper : ")
