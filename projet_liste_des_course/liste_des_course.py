@@ -1,6 +1,8 @@
 
 tab_ingredient = []
 nb_ingredient = 0
+nb_iteration = 0;
+ingredient_trouver = False;
 
 print("Tu dois taper : ")
 print(" 1 - ajouter un ingredient")
@@ -40,20 +42,27 @@ while nb_saisie == 2:
           tab_ingredient.append(ingredient)
           nb_ingredient =  nb_ingredient+1
 
-    print(tab_ingredient)
-    print(nb_ingredient)
+#     print(tab_ingredient)
+#     print(nb_ingredient)
     #
     ingredient_supprimer = str(input("Ingredient à supprimer ")).lower().strip()
 
     #boucle pour voir chaque ingredient 
     for item in tab_ingredient:
-         print("mes ingredient",item)
+     #     print("mes ingredient",item)
+         nb_iteration +=1
          
          if item == ingredient_supprimer:
               print("L'ingredient existe")
-         else:
-            print("L'ingredient existe pas ")
-        
+              nb_iteration= nb_iteration -1
+              print("Le nb iteration",nb_iteration)
+              ingredient_trouver = True;
+              break
+         
+    # CONDITION AU CAS OU L'INGREDIENT EXITE PAS  
+    if ingredient_trouver == False:
+         print("L'ingredient existe pas") 
+     
     
     #Permet a l'utilisateur de choisir le nb 
     if tab_ingredient !=0 :
@@ -62,4 +71,4 @@ while nb_saisie == 2:
 
 
 
-print("Ma liste d'ingredient ", nb_ingredient)
+print("nombre iteration ", nb_iteration)
