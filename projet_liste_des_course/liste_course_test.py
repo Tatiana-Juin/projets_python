@@ -24,7 +24,7 @@ while nb_saisie == 1:
     nb_ingredient =  nb_ingredient+1
 
     #Cela permet d'inserer un nombre
-    if tab_ingredient !=0 :
+    if nb_ingredient>0  :
          print("1 - ajouter un nouvelle ingredient") 
          print("2 supprimer")
          print("3 - Quitter")
@@ -68,7 +68,7 @@ while nb_saisie == 2:
 
 
     #Permet a l'utilisateur de choisir le nb 
-    if tab_ingredient !=0 :
+    if nb_ingredient > 0  :
          nb_saisie = int(input("Quel est ton nb "))
 
 
