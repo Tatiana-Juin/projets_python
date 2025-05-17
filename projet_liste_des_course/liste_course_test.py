@@ -1,78 +1,46 @@
-tab_ingredient = []
-nb_ingredient = 0
-nb_iteration = 0;
-ingredient_trouver = False;
+tab_ingredient = [];
+nb_ingredient = 0;
 
-print("Tu dois taper : ")
-print(" 1 - ajouter un ingredient")
-print(" 2- supprimer un ingredient")
-print("3 quitter l'application")
+print("Tu dois taper :");
+print("1 - inserer un ingredient");
+print("2 - Supprimer un ingredient");
+print("3 - Quitter l'application");
 
-nb_saisie = int(input("Quel est ton nb"))
-# EN CAS D'ERREUR DE SAISIE 
-while nb_saisie!= 1 and nb_saisie!=2 and nb_saisie!=3 : 
-    print("erreur")
-    print("1-Pour ajouter un ingredient")
-    print("2 pour supprimer un ingredient")
-    print("3 pour quitter ")
-    nb_saisie = int(input("Quel est ton nb "))
+nb_saisie = int(input("Quel est ton nombre"));
 
-# AJOUTER UN INGREDIENT
-while nb_saisie == 1:
-    ingredient = str(input("Saisie ton ingredient ")).lower().strip()
-    tab_ingredient.append(ingredient)
-    nb_ingredient =  nb_ingredient+1
+while nb_saisie != 3:
+    if nb_saisie ==1:
+        ingredient = str(input("Quel est ton ingredient ? ")).lower().strip();
 
-    #Cela permet d'inserer un nombre
-    if nb_ingredient>0  :
-         print("1 - ajouter un nouvelle ingredient") 
-         print("2 supprimer")
-         print("3 - Quitter")
-         nb_saisie = int(input("Quel est ton nb "))
+        #si l'ingredient est dans le tableau
+        if ingredient in tab_ingredient:
+            print("cette ingredient qui est ", ingredient, "existe deja")
+        else:
+            tab_ingredient.append(ingredient)
+            nb_ingredient +=1
+            print("l'ingredient : ", ingredient," a ajouter ajouter avec succès")
 
-# Supprimer un ingredient 
-while nb_saisie == 2:
+    #SUPPRESSION
+    elif nb_saisie ==2:
+        if nb_ingredient ==0:
+            print("Il n'y a aucun ingredient dans ta liste de course . Je ne peut pas supprimer d'ingredient");
+        else:
+            ingredient_supprimer = str(input("Ingredient a supprimer : ")).lower().strip()
+            
+            #si l'ingredient est dans le tableau 
+            if ingredient_supprimer in tab_ingredient:
+                tab_ingredient.remove(ingredient_supprimer)
+                nb_ingredient -=1
+                print("L'ingredient ", ingredient_supprimer, " a bien était supprimer")
+            else:
+                print("L'ingredient saisie n'ai pas dans ta liste des course")            
 
-    #aucun ingredient 
-    if nb_ingredient == 0:
-          print("Si tu veux supprimer un ingredient il faut que tu en ai un ");
+    print("Tu dois taper :");
+    print("1 - inserer un ingredient");
+    print("2 - Supprimer un ingredient");
+    print("3 - Quitter l'application");
+    nb_saisie = int(input("Quel est ton nombre"));
 
-          ingredient = str(input("Saisie ton ingredient ")).lower().strip()
-          tab_ingredient.append(ingredient)
-          nb_ingredient =  nb_ingredient+1
-
-#     print(tab_ingredient)
-#     print(nb_ingredient)
-    #
-    ingredient_supprimer = str(input("Ingredient à supprimer ")).lower().strip()
-
-    #boucle pour voir chaque ingredient 
-    for item in tab_ingredient:
-     #     print("mes ingredient",item)
-         nb_iteration +=1
-
-         if item == ingredient_supprimer:
-              print("L'ingredient existe")
-              nb_iteration= nb_iteration -1
-              print("Le nb iteration",nb_iteration)
-          #     print("Le nb iteration",nb_iteration)
-              tab_ingredient.pop(nb_iteration)
-              #renitialisation de la variable
-              nb_iteration = 0
-              ingredient_trouver = True;
-              break
-
-    # CONDITION AU CAS OU L'INGREDIENT EXITE PAS  
-    if ingredient_trouver == False:
-         print("L'ingredient existe pas") 
-
-
-    #Permet a l'utilisateur de choisir le nb 
-    if nb_ingredient > 0  :
-         nb_saisie = int(input("Quel est ton nb "))
-
-
-
-
-print("nombre iteration ", nb_iteration)
-print("Ingredient  ", tab_ingredient)
+#Si il clique sur 3 
+print("L'application est terminer")
+print("Ta liste des courses est :", tab_ingredient)
