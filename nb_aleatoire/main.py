@@ -4,14 +4,14 @@ nb_vie = 5
 
 #randint utiliser pour generer un nb aleatoire qui est un entier 
 nb_aleatoire = random.randint(1, 10)
-print(nb_aleatoire)
+# print(nb_aleatoire)
 
 nb_utilisateur = int(input("entrer un nombre entre 1 et 10 ? "))
 
 
 while nb_aleatoire != nb_utilisateur:
     nb_vie = nb_vie -1 
-    print(nb_vie)
+    print("ton nombre de vie est de : ",nb_vie)
 
     if nb_vie == 0 :
         print("Tu as perdu")
@@ -26,6 +26,6 @@ while nb_aleatoire != nb_utilisateur:
 
     nb_utilisateur = int(input("entrer un nombre entre 1 et 10 ? "))
         
-print(nb_vie)
+
 if nb_vie != 0:
-    print("felicitations ")
+    print("felicitations tu as trouver le nombre ", nb_aleatoire, " il te rester " ,nb_vie," vie ")
