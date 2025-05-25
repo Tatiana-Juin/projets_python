@@ -16,7 +16,7 @@ def gerer_ingredient():
     print("Bienvenue sur ta liste des course ")
     print("----------------------------------")
 
-    #TANT QUE LE PROGRAMME EST EN COUR DONC  EGALE A True
+    #TANT QUE LE PROGRAMME EST EN COUR DONC
     while programme_actif:
         print("Veuillez faire un choix en entrant un nombre")
         print("1 - Ajouter un ingredient ")
@@ -27,7 +27,7 @@ def gerer_ingredient():
         nb_saisie = int(input("Quel est ton nombre"))
 
         match nb_saisie:
-            #AJOUTER
+
             case 1:
                 ingredient = str(input("Quel est ton ingredient ? ")).lower().strip();
                 
