@@ -28,4 +28,4 @@ while nb_aleatoire != nb_utilisateur:
         
 
 if nb_vie != 0:
-    print("felicitations tu as trouver le nombre ", nb_aleatoire, " il te rester " ,nb_vie," vie ")
+    print("felicitations tu as trouver le nombre ", nb_aleatoire, " il te rester " ,nb_vie," vie ") 
