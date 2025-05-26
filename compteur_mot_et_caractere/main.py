@@ -1,5 +1,3 @@
-
-
 #demande a l'utilisateur de saisir du texte 
 texte_utilisateur = str(input("Saisie ton texte : ")).strip()
 
@@ -9,6 +7,7 @@ mots = texte_utilisateur.split()
 nb_mot = len(mots)
 #affiche le nombre de mot 
 print(f"le nombre de mot est de {nb_mot}")
+
 #pour separer chaque caratere d'une chaine de texte 
 caractere_seule= list(texte_utilisateur)
 nb_caractere = len(caractere_seule)
