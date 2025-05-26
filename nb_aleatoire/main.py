@@ -15,6 +15,7 @@ while nb_aleatoire != nb_utilisateur:
 
     if nb_vie == 0 :
         print("Tu as perdu")
+        print(f"Le nombre aleatoire etait {nb_aleatoire}")
         break  
 
     if nb_utilisateur > nb_aleatoire :
