@@ -9,5 +9,11 @@ mots = texte_utilisateur.split()
 nb_mot = len(mots)
 #affiche le nombre de mot 
 print(f"le nombre de mot est de {nb_mot}")
+#pour separer chaque caratere d'une chaine de texte 
+caractere_seule= list(texte_utilisateur)
+nb_caractere = len(caractere_seule)
+print(f"Le nom de caractere est de {nb_caractere}")
+
+
 
 
