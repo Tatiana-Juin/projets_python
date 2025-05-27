@@ -18,4 +18,5 @@ tab_citation = [
 
 citation_choisie = random.choice(tab_citation)
 
-print(f"Citation aleatoire :  {citation_choisie}")
+print("Citation aleatoire :  ")
+print(f" {citation_choisie}")
