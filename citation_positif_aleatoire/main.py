@@ -1,3 +1,4 @@
+import random
 
 #TABLEAU POUR LES CITATION
 tab_citation = [
@@ -14,3 +15,7 @@ tab_citation = [
      "La joie de vivre vient de ce que l'on donne, non de ce que l'on reçoit. de Albert Einstein"
 
 ]
+
+citation_choisie = random.choice(tab_citation)
+
+print(f"Citation aleatoire :  {citation_choisie}")
