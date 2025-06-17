@@ -11,4 +11,6 @@ liste_citation = loaded_citation['citations']
 
 citation_choisie = random.choice(liste_citation)
 
-print(citation_choisie)
+print(f"{citation_choisie['citation']} : {citation_choisie['auteur']}")
+
+
