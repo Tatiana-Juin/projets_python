@@ -1,5 +1,5 @@
 import json
-# variable pour ajouter la moyenne et le compteur initialiser a 0 
+# variable pour la moyenne et le nombre_eleves initialiser a 0 
 nombre_eleves = 0
 moyenne = 0;
 
