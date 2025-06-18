@@ -1,0 +1,27 @@
+{
+    "eleves": [
+        {
+            "prenom": "Jean ",
+            "nom" : "pascal",
+            "moyenne": 15.5
+        },
+          {
+            "prenom": "lisa ",
+            "nom" : "david",
+            "moyenne": 5.0
+        },
+          {
+            "prenom": "mathieu ",
+            "nom" : "del",
+            "moyenne": 18.5
+        },
+          {
+            "prenom": "valentina ",
+            "nom" : "gonin",
+            "moyenne": 12.2
+        }
+        
+
+
+    ]
+}
