@@ -20,11 +20,11 @@
             "citation" : "Ce n'est pas la force du corps qui compte, mais la force de l'esprit.",
             "auteur" :" J.R.R. Tolkien"
         },
-         {
+          {
             "citation" : "Commencez par faire le nécessaire, puis faites ce qu'il est possible de faire, et tout à coup, vous faites l'impossible.",
             "auteur" :" Saint François d'Assise"
         },
-         {
+          {
             "citation" : "Le succès n'est pas final, l'échec n'est pas fatal : c'est le courage de continuer qui compte.",
             "auteur" :" Winston Churchill"
         },
@@ -43,8 +43,6 @@
         {
             "citation" : "La joie de vivre vient de ce que l'on donne, non de ce que l'on reçoit.",
             "auteur" :"Albert Einstein"
-        }
-
-
+        }  
     ]
 }
