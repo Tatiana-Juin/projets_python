@@ -10,16 +10,49 @@ try:
     print("Connexion à la base de données réussie !")
     cursor = cnx.cursor()
 
-    # Appeler la fonction avec l'ordre (cursor, cnx)
-    fonction.ajout_produit(cursor, cnx) 
+    nb_ingredient = 0;
+
+    # MENU
+    print("Tu dois taper :");
+    print("1 - inserer un ingredient");
+    print("2 - Supprimer un ingredient");
+    print("3 - Quitter l'application");
+    
+    nb_saisie = int(input("Quel est ton nombre"));
+
+    while nb_saisie != 3:
+        # AJOUT
+        if nb_saisie == 1:
+             # POUR SAISIR UN INGREDIENT
+            ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
+            
+            #fonction pour ajouter un ingredient 
+            fonction.ajout_produit(cursor, cnx,ingredient_saisie) 
+            # print("Ajout")
+        elif nb_saisie ==2:
+            nb_saisie = int(input("Quel est ton nombre"));
+            print("Supprimer")
+
+
+        print("Tu dois taper :");
+        print("1 - inserer un ingredient");
+        print("2 - Supprimer un ingredient");
+        print("3 - Quitter l'application");
+    
+        nb_saisie = int(input("Quel est ton nombre"));
+
+    
 
 except mysql.connector.Error as err:
+
     if err.errno == mysql.connector.errorcode.ER_ACCESS_DENIED_ERROR:
         print("Quelque chose ne va pas avec votre nom d'utilisateur ou mot de passe")
+
     elif err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
         print("La base de données n'existe pas")
     else:
         print(f"Erreur MySQL: {err}") # Afficher l'erreur MySQL réelle
+
 except Exception as e:
     print(f"Une erreur inattendue est survenue: {e}") # Capturer toute autre erreur générale
 finally:
