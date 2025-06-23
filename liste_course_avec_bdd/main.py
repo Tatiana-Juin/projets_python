@@ -27,16 +27,18 @@ try:
             nb_produit = fonction.count_ingredient(cursor)
             #aucun ingredient
             if nb_produit == 0:
-                print("Aucun")
+                ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
+                fonction.ajout_produit(cursor, cnx,ingredient_saisie)
+               
             else:
                 print("plusieurs")
-
-            # ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
-
-            
-            #fonction pour ajouter un ingredient 
-            # fonction.ajout_produit(cursor, cnx,ingredient_saisie) 
-            # print("Ajout")
+                ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
+                existe = fonction.produit_exist(cursor,ingredient_saisie)
+                
+                if(existe == True):
+                    print("Cela existe")
+                else:
+                    print("Cela n'existe pas ")
         elif nb_saisie ==2:
             nb_saisie = int(input("Quel est ton nombre"));
             print("Supprimer")
