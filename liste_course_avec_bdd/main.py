@@ -24,10 +24,18 @@ try:
         # AJOUT
         if nb_saisie == 1:
              # POUR SAISIR UN INGREDIENT
-            ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
+            nb_produit = fonction.count_ingredient(cursor)
+            #aucun ingredient
+            if nb_produit == 0:
+                print("Aucun")
+            else:
+                print("plusieurs")
+
+            # ingredient_saisie = str(input("Quel est ton ingredient ?  ")).lower().strip()
+
             
             #fonction pour ajouter un ingredient 
-            fonction.ajout_produit(cursor, cnx,ingredient_saisie) 
+            # fonction.ajout_produit(cursor, cnx,ingredient_saisie) 
             # print("Ajout")
         elif nb_saisie ==2:
             nb_saisie = int(input("Quel est ton nombre"));
