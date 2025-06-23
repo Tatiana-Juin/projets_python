@@ -7,14 +7,16 @@
 
 
 # FICHIER POUR ECRIRE LES FONCTIONS 
+#FONCTION POUR AJOUTER UN INGREDIENT 
 def ajout_produit(cursor, cnx,ingredient_saisie): 
+    #REQUETE
     add_produit = (
         "INSERT INTO produits"
         "(nom_produit)"
         "VALUES (%s)"
     )
     # Ceci DOIT être un tuple avec une virgule
-    # data_produit = ("Poire",) 
+    # (ingredient_saisie,) => cela doit etre un tuple 
     data_produit = (ingredient_saisie,)
 
     
@@ -27,3 +29,11 @@ def ajout_produit(cursor, cnx,ingredient_saisie):
     except Exception as e:
         cnx.rollback() # Annuler si quelque chose ne va pas
         print(f"ERREUR: Échec de l'ajout du produit ou de la validation : {e}")
+
+#FONCTION POUR COMPTER LE NB INGREDIENT 
+def count_ingredient(cursor):
+    cursor.execute("SELECT COUNT(id_produit) as nb_produit FROM produits")
+    resultat = cursor.fetchone()
+    #Le resultat est un tuple 
+    nombre_produits = resultat[0]
+    return nombre_produits
