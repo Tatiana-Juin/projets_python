@@ -37,3 +37,9 @@ def count_ingredient(cursor):
     #Le resultat est un tuple 
     nombre_produits = resultat[0]
     return nombre_produits
+
+def produit_exist(cursor,nom_produit):
+    query = "SELECT nom_produit FROM produits WHERE nom_produit= %s"
+    cursor.execute(query,(nom_produit,))
+    resultat = cursor.fetchone()
+    return  resultat is not None
