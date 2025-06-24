@@ -42,8 +42,17 @@ try:
         
         # VOIR LES LIVRES 
         elif nb_saisie ==2:
-            print("Tous les livres")
-        
+            # print("Tous les livres")
+            nb_livre = fonction.count_livre(cursor)
+            
+            if nb_livre == 0:
+                print("Il n'y a aucun livre dans ta bibliotheque ")
+            else:
+                print("Tous les livres qui sont dans la bibliotheque : ")
+                livres = fonction.show_livre(cursor)
+                for ligne in livres: 
+                    print(f"Nom du livre : {ligne[0]} auteur: {ligne[1]}")
+
         # SUPPRIMER UN LIVRE
         elif nb_saisie == 3 : 
             print("Supprimer")
