@@ -34,4 +34,10 @@ def show_livre(cursor):
      cursor.execute(query)
      resultat = cursor.fetchall()
      return resultat
+
+def delete_livre(cursor,cnx, livre_supprimer):
+     sql="DELETE FROM livres WHERE nom_livre = %s"
+     cursor.execute(sql,(livre_supprimer,))
+     cnx.commit()
+     print("Supprimer")
   

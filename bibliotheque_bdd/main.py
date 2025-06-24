@@ -38,7 +38,6 @@ try:
                 else:
                     fonction.add_livres(cursor,cnx,nom_livre,auteur_livre)
                 
-            # fonction.add_livres(cursor,cnx,nom_livre,auteur_livre)
         
         # VOIR LES LIVRES 
         elif nb_saisie ==2:
@@ -55,8 +54,25 @@ try:
 
         # SUPPRIMER UN LIVRE
         elif nb_saisie == 3 : 
-            print("Supprimer")
+            # compte le nb de livre qu'il y a dans ta bdd 
+            nb_livre = fonction.count_livre(cursor)
 
+            # s'il n'y a aucun livre cela affiche un message erreur 
+            if nb_livre == 0:
+                print("Tu ne peut pas supprimer de lire car tu en a pas dans ta bibliotheque ")
+            else:
+                # Si il a des livre on demander le nom du livre 
+                nom_supprimer = str(input("Quel est le nom du livre a supprimer ? ")).lower().strip()
+                # On verifie si le livre est dans la bdd
+                existe = fonction.existe_livre(cursor,nom_supprimer)
+                # S'il est present dans la bdd on le supprime 
+                if existe == True : 
+                    supprimer = fonction.delete_livre(cursor,cnx,nom_supprimer)
+                else:
+                    # sinon on affiche un message d'erreur 
+                    print("Le livre que tu souhaite supprimer n'est pas dans ta bibliotheque ")
+
+        # Pour eviter les boucle infini 
         print("Tu dois taper :");
         print("1 - Ajouter un livre ");
         print("2 - Voir les livres ");
@@ -66,9 +82,6 @@ try:
         nb_saisie = int(input("Quel est ton nombre ? "));        
 
     
-
-
-
 except mysql.connector.Error as err:
 
     if err.errno == mysql.connector.errorcode.ER_ACCESS_DENIED_ERROR:
