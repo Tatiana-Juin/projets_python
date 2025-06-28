@@ -14,6 +14,8 @@ label_titre.pack()
 tache_entry = Entry(frame,font=("Helvetica",17),fg="black")
 tache_entry.pack(pady=(10,0))
 
+btn_entry = Button(frame,text="Ajouter une tache",font=("Helvetica",15),bg="#ffeeee",fg="black")
+btn_entry.pack(pady=(15,0))
 
 
 #pady => marge => haut et bas 
