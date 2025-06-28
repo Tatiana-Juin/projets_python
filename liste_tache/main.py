@@ -1,12 +1,15 @@
 from tkinter import * 
 
+tab_tache = []
 def ajout_tache(tache_entry):
-    tab_Tache = []
-    text = tache_entry.get()
+    
+    tache_saisie = tache_entry.get()
     # Pour ignorer les champs vide 
-    if text.strip(): 
-        label_entry = Label(frame,text=text,font=("Helvetica",15),bg="#ffeeee",fg="black")
+    if tache_saisie.strip(): 
+        tab_tache.append(tache_saisie)
+        label_entry = Label(frame,text=tache_saisie,font=("Helvetica",15),bg="#ffeeee",fg="black")
         label_entry.pack(pady=(10,0))
+        
         tache_entry.delete(0, END)
    
 
