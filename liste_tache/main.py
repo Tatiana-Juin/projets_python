@@ -1,5 +1,15 @@
 from tkinter import * 
 
+def ajout_tache(tache_entry):
+    tab_Tache = []
+    text = tache_entry.get()
+    # Pour ignorer les champs vide 
+    if text.strip(): 
+        label_entry = Label(frame,text=text,font=("Helvetica",15),bg="#ffeeee",fg="black")
+        label_entry.pack(pady=(10,0))
+        tache_entry.delete(0, END)
+   
+
 window = Tk()
 window.title("Liste des taches ")
 window.geometry("720x480")
@@ -14,7 +24,9 @@ label_titre.pack()
 tache_entry = Entry(frame,font=("Helvetica",17),fg="black")
 tache_entry.pack(pady=(10,0))
 
-btn_entry = Button(frame,text="Ajouter une tache",font=("Helvetica",15),bg="#ffeeee",fg="black")
+#on utilise command = labda: => quand ne fonction a des argument 
+
+btn_entry = Button(frame,text="Ajouter une tache",font=("Helvetica",15),bg="#ffeeee",fg="black",command=lambda:ajout_tache(tache_entry))
 btn_entry.pack(pady=(15,0))
 
 
