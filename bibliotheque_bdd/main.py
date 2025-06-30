@@ -47,8 +47,9 @@ try:
             if nb_livre == 0:
                 print("Il n'y a aucun livre dans ta bibliotheque ")
             else:
-                print("Tous les livres qui sont dans la bibliotheque : ")
+                
                 livres = fonction.show_livre(cursor)
+                print("Tous les livres qui sont dans la bibliotheque : ")
                 for ligne in livres: 
                     print(f"Nom du livre : {ligne[0]} auteur: {ligne[1]}")
 
