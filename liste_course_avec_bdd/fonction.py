@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 #FONCTION POUR AJOUTER UN INGREDIENT 
 def ajout_produit(cursor, cnx,ingredient_saisie): 
     #REQUETE

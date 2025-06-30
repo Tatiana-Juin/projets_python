@@ -7,7 +7,7 @@ config = connexion_bdd.connexionBdd()
 
 try:
     cnx = mysql.connector.connect(**config)
-    print("Connexion à la base de données réussie !")
+    # print("Connexion à la base de données réussie !")
     cursor = cnx.cursor()
 
     # nb_ingredient = 0;
@@ -60,8 +60,9 @@ try:
                     supprimer_produit = fonction.delete_produit(cursor,cnx,nom_produit_supprimer)
 
                     affiche_produit = fonction.show_produit(cursor)
+                    print("La liste des produits : ")
                     for ligne in affiche_produit:
-                        print("La liste des produits : ")
+                        
                         print(ligne[0])
 
                     
