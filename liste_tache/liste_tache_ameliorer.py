@@ -11,11 +11,17 @@ title = Label(window,text="Liste des tâches",font=("Arial",17),bg="black",fg="w
 title.pack(pady=(20,5))
 
 # Frame left
-frame_left=Frame(window,bg="black",bd=1,relief=SUNKEN)
+frame=Frame(window,bg="black")
+frame.pack(pady=10)
 
-task = Entry(frame_left,font=("Arial",15),bg="white",fg="black")
-task.pack()
+# Pour saisir du text 
+task = Entry(frame,font=("Arial",15),bg="white",fg="black")
+# pady = haut et bas , padx => gauche et droite 
+task.grid(row=0,column=0,padx=5,pady=5)
 
-frame_left.pack()
+
+btn_add_task = Button(frame,text="Ajout",font=("Arial",13), bg="white",fg="black")
+btn_add_task.grid(row=0,column=1,padx=5,pady=5)
+
 
 window.mainloop()
