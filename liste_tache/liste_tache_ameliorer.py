@@ -14,8 +14,13 @@ def add_task(task_entry):
             label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
             label_task.grid(row=index,column=0,padx=5,pady=5)
             # Pour le bouton supprimer 
-            btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black")
+            btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda:delete_task(task_entry))
             btn_delete.grid(row=index,column = 1,padx=5,pady=5)
+
+def delete_task(task_entry):
+    print("Cela fonctionne")
+
+#IDEE POUR SUPPRIMER IL SUFFIT DE RECUPERER L'INDEX DU BOUTON ET DE FAIRE REMOVE ET C'EST BON 
 
 # CONFIGURATION DE LA PREMIERE FENETRE 
 window = Tk()
