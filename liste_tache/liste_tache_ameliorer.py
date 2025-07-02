@@ -2,23 +2,38 @@ from tkinter import *
 
 # tableau pour la liste des taches 
 tab_task=[]
+# Stocker les label,button  pour pouvoir les supprimer et ajouter a chaque entre
+task_widgets = {}
 
 def add_task(task_entry):
-    # curent_row = 0
-    task = task_entry.get()
+    # Pour le convertir en chaine 
+    task = task_entry.get().strip()
     if task.strip():
+        # recupere la longueur 
+        index = len(tab_task)
+        # ajoute au tableau 
         tab_task.append(task)
-        task_entry.delete(0, END)
-        # On fait cette ligne pour incrementer la row en recuperant l'index . start = 1 dit que la boucle commence a 1 fonction de enumerate
-        for index,task in enumerate(tab_task,start=1):
-            label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
-            label_task.grid(row=index,column=0,padx=5,pady=5)
-            # Pour le bouton supprimer 
-            btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda:delete_task(task_entry))
-            btn_delete.grid(row=index,column = 1,padx=5,pady=5)
+    #    affiche la tache sur chaque ligne c'est pour ca row = index +1 pour que cela passe a la ligne 
+        label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
+        label_task.grid(row=index +1,column=0,padx=5,pady=5)
+         # Pour le bouton supprimer index +1 pour que le bouton soit  la ligne  idx = index caapturer la valeur de l'index 
+        btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda idx= index: delete_task(idx))
+        btn_delete.grid(row=index +1,column = 1,padx=5,pady=5)
 
-def delete_task(task_entry):
-    print("Cela fonctionne")
+        #On enregistre dans un dictionnaire 
+        task_widgets[index] = (label_task, btn_delete)
+        # Pour supprimer l'element qui est dans le champs input 
+        task_entry.delete(0, END)
+# Fonction de suppression
+def delete_task(index):
+    print(f"Cela fonctionne {tab_task[index]}")
+    # Boucle sur le diction 
+    for widget in task_widgets[index]:
+        # Supprime l'element du dictionnaire
+        widget.destroy()
+    # Remplace la valeur par None donc elle n'est pas totalement supprimer 
+    tab_task[index] = None
+    
 
 #IDEE POUR SUPPRIMER IL SUFFIT DE RECUPERER L'INDEX DU BOUTON ET DE FAIRE REMOVE ET C'EST BON 
 
