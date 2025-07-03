@@ -28,7 +28,7 @@ def delete_task(index):
    refresh_task()
 
 # FONCTION POUR VOIR TOUS LES ELEMENTS 
-def view_task(tab_task):
+def view_task():
         # Pour afficher les elements 
         for index, task in enumerate(tab_task):
             label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
@@ -36,7 +36,7 @@ def view_task(tab_task):
 
             btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda idx= index: delete_task(idx))
             btn_delete.grid(row=index +1,column = 1,padx=5,pady=5)
-
+            # Pour ajouter dans le dictionnaire le label et bouton a la ligne demander 
             task_widgets[index] = (label_task,btn_delete)
                 
 # FONCTION POUR REFRESH , REAFRAICHIR LES ELEMENTS DU TAPLE 
@@ -49,10 +49,11 @@ def refresh_task():
                widget.destroy()
     #  vide complementement le dictionnaire
      task_widgets.clear()
-    #  reafiche les elements du dictionnaire avec leurs nouveau index si necessaire 
-     view_task(tab_task)
 
-#IDEE POUR SUPPRIMER IL SUFFIT DE RECUPERER L'INDEX DU BOUTON ET DE FAIRE REMOVE ET C'EST BON 
+    #  reafiche les elements du dictionnaire avec leurs nouveau index si necessaire 
+     view_task()
+
+
 
 # CONFIGURATION DE LA PREMIERE FENETRE 
 window = Tk()
