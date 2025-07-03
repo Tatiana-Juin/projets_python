@@ -13,27 +13,44 @@ def add_task(task_entry):
         index = len(tab_task)
         # ajoute au tableau 
         tab_task.append(task)
-    #    affiche la tache sur chaque ligne c'est pour ca row = index +1 pour que cela passe a la ligne 
-        label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
-        label_task.grid(row=index +1,column=0,padx=5,pady=5)
-         # Pour le bouton supprimer index +1 pour que le bouton soit  la ligne  idx = index caapturer la valeur de l'index 
-        btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda idx= index: delete_task(idx))
-        btn_delete.grid(row=index +1,column = 1,padx=5,pady=5)
-
-        #On enregistre dans un dictionnaire 
-        task_widgets[index] = (label_task, btn_delete)
+    
         # Pour supprimer l'element qui est dans le champs input 
         task_entry.delete(0, END)
+        # mettre a jours l'affichage 
+        refresh_task()
+        
+    
 # Fonction de suppression
 def delete_task(index):
-    print(f"Cela fonctionne {tab_task[index]}")
-    # Boucle sur le diction 
-    for widget in task_widgets[index]:
-        # Supprime l'element du dictionnaire
-        widget.destroy()
-    # Remplace la valeur par None donc elle n'est pas totalement supprimer 
-    tab_task[index] = None
-    
+#    Supprime la tache du tableau
+   tab_task.pop(index)
+#    mettre a jour l'affichage avec les bonne ligne 
+   refresh_task()
+
+# FONCTION POUR VOIR TOUS LES ELEMENTS 
+def view_task(tab_task):
+        # Pour afficher les elements 
+        for index, task in enumerate(tab_task):
+            label_task = Label(frame,text=task,font=("Arial",15),bg="black",fg="white")
+            label_task.grid(row=index +1,column=0,padx=5,pady=5)
+
+            btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda idx= index: delete_task(idx))
+            btn_delete.grid(row=index +1,column = 1,padx=5,pady=5)
+
+            task_widgets[index] = (label_task,btn_delete)
+                
+# FONCTION POUR REFRESH , REAFRAICHIR LES ELEMENTS DU TAPLE 
+def refresh_task():
+    #  pour recuperer tous les element du dictionnaire sans les index 
+     for widgets in task_widgets.values():
+        #   wigets est un tuple ou il a labbel et bouton . Cette ligne parcours chacun des deux widget comme for widget in (label, bouton)
+          for widget in widgets:
+            #    supprime le widget de l'ecran
+               widget.destroy()
+    #  vide complementement le dictionnaire
+     task_widgets.clear()
+    #  reafiche les elements du dictionnaire avec leurs nouveau index si necessaire 
+     view_task(tab_task)
 
 #IDEE POUR SUPPRIMER IL SUFFIT DE RECUPERER L'INDEX DU BOUTON ET DE FAIRE REMOVE ET C'EST BON 
 
