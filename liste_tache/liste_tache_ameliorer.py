@@ -9,8 +9,7 @@ def add_task(task_entry):
     # Pour le convertir en chaine 
     task = task_entry.get().strip()
     if task.strip():
-        # recupere la longueur 
-        index = len(tab_task)
+        
         # ajoute au tableau 
         tab_task.append(task)
     
@@ -18,6 +17,7 @@ def add_task(task_entry):
         task_entry.delete(0, END)
         # mettre a jours l'affichage 
         refresh_task()
+      #   view_task()
         
     
 # Fonction de suppression
@@ -36,10 +36,11 @@ def view_task():
 
             btn_delete = Button(frame,text="Supprimer",font=("Arial",12),bg="white",fg="black", command=lambda idx= index: delete_task(idx))
             btn_delete.grid(row=index +1,column = 1,padx=5,pady=5)
+
             # Pour ajouter dans le dictionnaire le label et bouton a la ligne demander 
             task_widgets[index] = (label_task,btn_delete)
                 
-# FONCTION POUR REFRESH , REAFRAICHIR LES ELEMENTS DU TAPLE 
+# FONCTION POUR REFRESH , RAFRAICHIR LES ELEMENTS DU TUPLE 
 def refresh_task():
     #  pour recuperer tous les element du dictionnaire sans les index 
      for widgets in task_widgets.values():
