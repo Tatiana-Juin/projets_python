@@ -5,6 +5,12 @@ window.title("Liste des courses ")
 window.geometry("600x600")
 window.config(background="black")
 
+#TABLEAU POUR LES COURSE
+tab_product = []
+#DICTIONNAIRE POUR LES WIDGET 
+product_widget = {} 
+
+
 # TITRE DE LA PAGE 
 title_page = Label(window,text="Liste des courses",font=("Arial",20),fg="white",bg="black")
 title_page.pack(pady=15)
