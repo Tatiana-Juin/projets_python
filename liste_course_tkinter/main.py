@@ -9,16 +9,19 @@ window.config(background="black")
 title_page = Label(window,text="Liste des courses",font=("Arial",20),fg="white",bg="black")
 title_page.pack(pady=15)
 
+frame = Frame(window,bg="black")
+frame.pack(pady=10)
+
 # POUR SAISIR DES INGREDIENT 
-label_product = Label(window,text="Saisie ton ingredient",font=("Arial",15),fg="white",bg="black")
-label_product.pack(pady=15)
+label_product = Label(frame,text="Saisie ton ingredient",font=("Arial",15),fg="white",bg="black")
+label_product.grid(row=0,column=0,padx=5,pady=5)
 
 # SAISIE UTILISATEUR
-entry_product = Entry(window,font=("Arial",13),fg="black",bg="white")
-entry_product.pack(pady=4)
+entry_product = Entry(frame,font=("Arial",13),fg="black",bg="white")
+entry_product.grid(row = 1, column=0,padx=5,pady=5)
 
 # Bouton pour ajout 
-btn_add = Button(window,text="Ajout",font=("Arial",13),fg="black",bg="white")
-btn_add.pack(pady=5)
+btn_add = Button(frame,text="Ajout",font=("Arial",13),fg="black",bg="white")
+btn_add.grid(row=1, column=1,padx=5,pady=5)
 
 window.mainloop()
