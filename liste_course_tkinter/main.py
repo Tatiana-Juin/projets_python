@@ -18,17 +18,40 @@ product_widget = {}
 # FONCTION AJOUT DES PRODUITS
 
 def add_product(entry_product):
-    print("Ajout")
+    # RECUPERE LES DONNES SAISIE EN CHAINE DE CARACTERE 
+    # print("Ajout")
+    product = entry_product.get().strip()
+    # La chaine n'est pas vide 
+    if product.strip():
+        # ajoute dans le tableau 
+        tab_product.append(product)
+        # vide le champs de saisie 
+        entry_product.delete(0,END)
+        # appelle la fonction refresh
+        refresh()
+
+def view_product():
+    # Pour que ca commence a partir de la deuxieme ligne 
+    row_offset = 2
+    for index,product in enumerate(tab_product):
+        
+        name_product = Label(frame,text=product,font=("Arial",13),bg="black",fg="white")
+        name_product.grid(row = index +1 + row_offset, column=0,padx=5,pady=5)
+
+        button_delete = Button(frame,text="Supprimer", font=("Arial",13) , bg="white",fg="black")
+        button_delete.grid(row=index+1 + row_offset, column=1,padx=5,pady=5)
+        product_widget[index] = (name_product,button_delete)
 
 
 # REFRESH DES ELEMENTS VISUEL BOUTON + INGREDIENT 
 def refresh():
-    for widgets in product_widget.value():
+    for widgets in product_widget.values():
         for widget in widgets:
             widget.destroy()
     
     product_widget.clear()
     # APPELLER FONCTION VIEW POUR TOUTES LES TACHES 
+    view_product()
 
 # TITRE DE LA PAGE 
 title_page = Label(window,text="Liste des courses",font=("Arial", 20),fg="white", bg="black")
