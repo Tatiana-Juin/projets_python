@@ -30,6 +30,11 @@ def add_product(entry_product):
         # appelle la fonction refresh
         refresh()
 
+def delete_product(index):
+
+    tab_product.pop(index)
+    refresh()
+
 def view_product():
     # Pour que ca commence a partir de la deuxieme ligne 
     row_offset = 2
@@ -38,7 +43,7 @@ def view_product():
         name_product = Label(frame,text=product,font=("Arial",13),bg="black",fg="white")
         name_product.grid(row = index +1 + row_offset, column=0,padx=5,pady=5)
 
-        button_delete = Button(frame,text="Supprimer", font=("Arial",13) , bg="white",fg="black")
+        button_delete = Button(frame,text="Supprimer", font=("Arial",13) , bg="white",fg="black",command=lambda idx = index:delete_product(idx))
         button_delete.grid(row=index+1 + row_offset, column=1,padx=5,pady=5)
         product_widget[index] = (name_product,button_delete)
 
