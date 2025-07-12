@@ -1,3 +1,8 @@
+
+
+
+
+
 from tkinter import *
 
 window = Tk()
@@ -10,9 +15,23 @@ tab_product = []
 #DICTIONNAIRE POUR LES WIDGET 
 product_widget = {} 
 
+# FONCTION AJOUT DES PRODUITS
+
+def add_product(entry_product):
+    print("Ajout")
+
+
+# REFRESH DES ELEMENTS VISUEL BOUTON + INGREDIENT 
+def refresh():
+    for widgets in product_widget.value():
+        for widget in widgets:
+            widget.destroy()
+    
+    product_widget.clear()
+    # APPELLER FONCTION VIEW POUR TOUTES LES TACHES 
 
 # TITRE DE LA PAGE 
-title_page = Label(window,text="Liste des courses",font=("Arial",20),fg="white",bg="black")
+title_page = Label(window,text="Liste des courses",font=("Arial", 20),fg="white", bg="black")
 title_page.pack(pady=15)
 
 frame = Frame(window,bg="black")
@@ -27,7 +46,7 @@ entry_product = Entry(frame,font=("Arial",13),fg="black",bg="white")
 entry_product.grid(row = 1, column=0,padx=5,pady=5)
 
 # Bouton pour ajout 
-btn_add = Button(frame,text="Ajout",font=("Arial",13),fg="black",bg="white")
+btn_add = Button(frame,text="Ajout",font=("Arial",13),fg="black",bg="white", command=lambda:add_product(entry_product))
 btn_add.grid(row=1, column=1,padx=5,pady=5)
 
 window.mainloop()

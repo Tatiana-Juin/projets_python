@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 from tkinter import *
 
 #FONCTION POUR AJOUTER UNE SOMME 
@@ -16,7 +9,7 @@ def addition():
     result_calcule = nb1 + nb2
     # print(result_calcule)
     # return result
-    labl_result = Label(window,text=f"Resultat du calcule {nb1} + {nb2} = {result_calcule}",font=("Arial",15),bg="black",fg="white")
+    labl_result = Label(window,text=f"Résultat du calcule {nb1} + {nb2} = {result_calcule}",font=("Arial",15),bg="black",fg="white")
     labl_result.pack(pady=5)
 
 # CONSTRUCTION DE LA FENETRE 
