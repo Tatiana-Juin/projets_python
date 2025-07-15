@@ -9,11 +9,11 @@ class HorlogeFrame(customtkinter.CTkFrame):
         format_date = date_actuel.strftime("%d-%m-%Y  ")
 
         # pour afficher le texte 
-        self.label_date = customtkinter.CTkLabel(self,text=format_date,text_color="purple")
+        self.label_date = customtkinter.CTkLabel(self,text=format_date,font=("Arial",25))
         self.label_date.grid(row=0,column=0,padx=(0,10),pady=(10,0),sticky="n")
 
         # POUR AFFICHER L'HEURE
-        self.label_heure = customtkinter.CTkLabel(self,text="")
+        self.label_heure = customtkinter.CTkLabel(self,text="",text_color="purple",font=("Arial",40,"bold"))
         self.label_heure.grid(row=1,column=0,padx=(0,10),pady=(10,0))
 
         self.maj_heure()
@@ -32,7 +32,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Horloge")
-        self.geometry("400x400")
+        self.geometry("500x500")
         self.configure(fg_color="#F9F9F9")
         self.grid_columnconfigure(0,weight=1)
         self.grid_rowconfigure(0,weight=1)
