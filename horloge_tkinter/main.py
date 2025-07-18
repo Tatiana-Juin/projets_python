@@ -14,7 +14,7 @@ class HorlogeFrame(customtkinter.CTkFrame):
         self.label_date.grid(row=0,column=0,padx=(0,10),pady=(10,0),sticky="n")
 
         # POUR AFFICHER L'HEURE
-        self.label_heure = customtkinter.CTkLabel(self,text="",text_color="purple",font=("Arial",40,"bold"))
+        self.label_heure = customtkinter.CTkLabel(self,text="",text_color="purple",font=("Arial",50,"bold"))
         self.label_heure.grid(row=1,column=0,padx=(0,10),pady=(10,0))
 
         # POUR L'IMAGE 
@@ -50,8 +50,7 @@ class App(customtkinter.CTk):
         self.label_frame = HorlogeFrame(self)
         self.label_frame.grid(row=0,column=0,padx=(0,10),pady=(10,0),sticky="n")
 
-        # self.image_horloge = ImageApp(self)
-        # self.image_horloge.grid(row=1,column=0,padx=(0,10),pady=(10,0))
+       
     
 
 app = App()
