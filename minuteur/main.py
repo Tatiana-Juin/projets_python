@@ -6,8 +6,9 @@ class MinuteurFrame(customtkinter.CTkFrame):
     def __init__(self,master):
         super().__init__(master)
         
+        self.visible_input = True;
 
-        self.label_text=customtkinter.CTkLabel(self,text="Entrer un nombre",font=("Arial",15))
+        self.label_text=customtkinter.CTkLabel(self,text="Minuteur",font=("Arial",15))
         self.label_text.grid(row=0,column=0,padx=(0,10),pady=(10,0),sticky="n")
 
         # HEURE
@@ -41,12 +42,37 @@ class MinuteurFrame(customtkinter.CTkFrame):
             else:
                 # supprime le message d'erreur 
                 self.label_error.configure(text="")
+                self.toggle_input()
 
+    # FONCTION POUR FAIRE APPARAITRE ET DISPARAITRE LE CHAMPS 
+    def toggle_input(self):
+
+        # Si le champs est visible 
+        if  self.visible_input:
+            self.heure.grid_forget()
+            self.label_heure.grid_forget()
+            self.minute.grid_forget()
+            self.label_minute.grid_forget()
+            # APPELLE DE LA METHODE POUR AFFICHER L'HEURE
+           
+
+        # sinon on le fait apparaitre 
+        else: 
+            self.heure.grid(row=1,column=0,padx=(0,10),pady=(10,0))
+            self.label_heure.grid(row=1,column=1,padx=(0,10),pady=(10,0))
+            self.minute.grid(row=1,column=2,padx=(0,10),pady=(10,0))
+            self.label_minute.grid(row=1,column=3,padx=(0,10),pady=(10,0))
+            # print('visible')
+            
+        self.visible_input = not self.visible_input
+
+    
     
 # FENETRE PRINCIPALE 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
+        
         # apparence par defaut 
         customtkinter.set_appearance_mode("dark") 
         customtkinter.set_default_color_theme("dark-blue")
