@@ -36,7 +36,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
             heure = self.heure.get()
             minute = self.minute.get()
 
-            if not heure.isdigit() or not minute.isdigit() or int(minute) > 59:
+            if (heure and not heure.isdigit()) or not minute.isdigit() or int(minute) > 59:
                 self.label_error.configure(text="Tu dois saisir un chiffre")
                 self.heure.delete(0,'end')
                 self.minute.delete(0,'end')
