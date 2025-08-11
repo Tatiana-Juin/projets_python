@@ -59,7 +59,8 @@ class MinuteurFrame(customtkinter.CTkFrame):
             self.show()
             #changer la valeur du bouton en reset
             self.btn.configure(text="Pause")
-
+        else:
+            self.btn.configure(text="Relancer")
             
         self.visible_input = not self.visible_input
 
