@@ -27,7 +27,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
         self.label_error = customtkinter.CTkLabel(self, font=("Arial",15),text_color="red",text="")
         self.label_error.grid(row=2,column=0,padx=(0,10),pady=(10,0))
 
-        self.btn = customtkinter.CTkButton(self,text="Envoyer",font=("Arial",15),command=self.verif)
+        self.btn = customtkinter.CTkButton(self,text="Démarrer",font=("Arial",15),command=self.verif)
         self.btn.grid(row=1,column=5,padx=(0,10),pady=(10,0))
 
     # METHODE DE LA CLASSE POUR VERIFIER QUE C'EST UN NOMBRE 
