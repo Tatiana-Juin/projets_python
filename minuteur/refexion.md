@@ -23,5 +23,15 @@ si champs heure est vide alors :
 sinon 
     total_seconde 
 
+# REFLEXION 
+````
+    if  (heure and not heure.isdigit()) or not minute.isdigit() or int(minute) > 59 or (int(minute) == 0 and heure =="")  or ((int(minute)heure=="0"):
+````
+
+si  (heure and not heure.isdigit()) ou minute n'est pas un chiffre  
+    message erreur cela doit etre un chiffre 
+else: 
+    si minute > 59 ou (minute ==0 and heure=="") ou (minute ===0 and heure =="0")
+
 
 
