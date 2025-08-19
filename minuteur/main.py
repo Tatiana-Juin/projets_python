@@ -14,25 +14,35 @@ class MinuteurFrame(customtkinter.CTkFrame):
 
         self.label_text=customtkinter.CTkLabel(self,text="Minuteur",font=("Arial",15))
         self.label_text.grid(row=0,column=0,padx=(0,10),pady=(10,0),sticky="n")
-
         # HEURE
         self.heure = customtkinter.CTkEntry(self,font=("Arial",12),text_color="white")
-        self.heure.grid(row=1,column=0,padx=(0,10),pady=(10,0))
         self.label_heure=customtkinter.CTkLabel(self,text="h",font=("Arial",15))
+        self.minute = customtkinter.CTkEntry(self,font=("Arial",12),text_color="white")
+        self.label_minute=customtkinter.CTkLabel(self,text="m",font=("Arial",15))
+        self.label_error = customtkinter.CTkLabel(self, font=("Arial",15),text_color="red",text="")
+        self.btn = customtkinter.CTkButton(self,text="Démarrer",font=("Arial",15),command=self.toggle_input)
+
+        self.show_input()
+
+    def show_input(self):
+
+        
+        self.heure.grid(row=1,column=0,padx=(0,10),pady=(10,0))
+        
         self.label_heure.grid(row=1,column=1,padx=(0,10),pady=(10,0))
 
         # MINUTE
-        self.minute = customtkinter.CTkEntry(self,font=("Arial",12),text_color="white")
+        
         self.minute.grid(row=1,column=2,padx=(0,10),pady=(10,0))
-        self.label_minute=customtkinter.CTkLabel(self,text="m",font=("Arial",15))
+        
         self.label_minute.grid(row=1,column=3,padx=(0,10),pady=(10,0))
 
         # CREATION DU LABEL QUE L'ON APPELLE DANS LA FONCTION PLUS BAS POUR MODIFIER LE TEXTE PAR RAPPORT A CE QUE A ENTRER L'UTILISATEUR 
-        self.label_error = customtkinter.CTkLabel(self, font=("Arial",15),text_color="red",text="")
+        
         # self.label_error.grid(row=2,column=0,padx=(0,10),pady=(10,0))
         self.label_error.grid(row=2, column=0, columnspan=6, pady=(10, 0), sticky="w")
 
-        self.btn = customtkinter.CTkButton(self,text="Démarrer",font=("Arial",15),command=self.toggle_input)
+        
         self.btn.grid(row=1,column=5,padx=(0,10),pady=(10,0))
 
     # METHODE DE LA CLASSE POUR VERIFIER QUE C'EST UN NOMBRE 
@@ -53,7 +63,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
                 # self.toggle_input()
                 self.start()
 
-    # FONCTION POUR FAIRE APPARAITRE ET DISPARAITRE LE CHAMPS 
+    # FONCTION POUR LANCER LES BONNE 
     def toggle_input(self):
 
         if not self.is_start and not self.is_paused:
@@ -105,6 +115,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
         
     # FONCTION POUR AFFICHER LE MINUTEUR 
     def  start_compt(self):
+
         if self.total_seconde >= 0:
             # fait la conversion en minute 
             heures = self.total_seconde //3600
@@ -122,6 +133,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
 
             # Relance la fonction toute les secondes 
             self.id_timer = self.after(1000,self.start_compt)
+            
         else:
             self.label_show_heure.configure(text="")
 
@@ -130,21 +142,50 @@ class MinuteurFrame(customtkinter.CTkFrame):
 
             # Texte ajouter
             self.is_start = False
-            self.btn.configure(text="Demarrer")
+            self.btn.grid_forget()
+            self.reset()
+    
+    # STOPER LE MINUTEUR 
+    def stop_timer(self):
+        if self.id_timer:
+            self.after_cancel(self.id_timer)
+            self.id_timer = None
+
+    # FONCTION POUR AFFICHER LE BOUTON RENITIALISER 
+    def reset(self):
+        self.btn_reset = customtkinter.CTkButton(self,text="Reset",font=("Arial",15),command=self.reset_timer)
+        self.btn_reset.grid(row=1,column=6,padx=(0,10),pady=(10,0))
+        
+
+    def reset_timer(self):
+        self.stop_timer()
+        self.show_input()
+        self.label_show_heure.configure(text="")
+        self.label_show_minute.configure(text="")
+        self.label_show_seconde.configure(text="")
+        self.btn.configure(text="Démarrer")
+        #  sert a verifier si un objet btn reset possède un attribut donc existe 
+        if hasattr(self,'btn_reset'):
+            self.btn_reset.grid_forget()
+            del self.btn_reset
+        
+        self.is_start = False
+        self.is_paused=False
+
 
     # METHODE POUR EFFECTUER LA PAUSE 
     def pause(self):
         # RECUPERE ID 
-        if self.id_timer:
-            self.after_cancel(self.id_timer)
-            self.id_timer = None
+        self.stop_timer()
         self.is_paused = True
         self.btn.configure(text="Relancer")
+        self.reset()
 
     # METHODE POUR RELANCER APRES LA PAUSE 
     def resume(self):
         self.is_paused = False
         self.start_compt()
+        
         self.btn.configure(text="Pause")
 
 # FENETRE PRINCIPALE 
