@@ -163,6 +163,9 @@ class MinuteurFrame(customtkinter.CTkFrame):
         self.label_show_heure.configure(text="")
         self.label_show_minute.configure(text="")
         self.label_show_seconde.configure(text="")
+        # pour vider les champs de saisie 
+        self.heure.delete(0,'end')
+        self.minute.delete(0,'end')
         self.btn.configure(text="Démarrer")
         #  sert a verifier si un objet btn reset possède un attribut donc existe 
         if hasattr(self,'btn_reset'):
