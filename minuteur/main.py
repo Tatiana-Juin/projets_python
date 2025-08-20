@@ -1,5 +1,6 @@
 import customtkinter
-import time
+
+from plyer import notification
 
 
 class MinuteurFrame(customtkinter.CTkFrame):
@@ -144,6 +145,12 @@ class MinuteurFrame(customtkinter.CTkFrame):
             self.is_start = False
             self.btn.grid_forget()
             self.reset()
+            # POUR AFFICHER UNE NOTIFICATION DE FIN DE MINUTEUR 
+            notification.notify(
+                title="Minuteur",
+                message="Temps ecoulé",
+                timeout=5  # durée d'affichage du pop up de fin 
+            )
     
     # STOPER LE MINUTEUR 
     def stop_timer(self):
