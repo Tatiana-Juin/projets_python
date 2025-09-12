@@ -1,8 +1,6 @@
 import customtkinter
 
 from plyer import notification
-
-
 class MinuteurFrame(customtkinter.CTkFrame):
     def __init__(self,master):
         super().__init__(master)
@@ -64,7 +62,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
                 # self.toggle_input()
                 self.start()
 
-    # FONCTION POUR LANCER LES BONNE 
+    # METHODE POUR LANCER LES BONNE 
     def toggle_input(self):
 
         if not self.is_start and not self.is_paused:
@@ -74,7 +72,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
         elif self.is_paused:
             self.resume()
 
-    # FONCTION POUR RECUPERER  LES MINUTES ,HEURE ET SECONDE ET CACHER LES ENTRER
+    # METHODE POUR RECUPERER  LES MINUTES ,HEURE ET SECONDE ET CACHER LES ENTRER
     def start(self):
        
         # recupere les heure et minutes
@@ -104,7 +102,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
         self.is_paused = False
         self.btn.configure(text="Pause")
     
-    # FONCTION POUR LA CONVERSION POUR AFFICHER LES MINUTES ET HEURE 
+    # METHODE POUR LA CONVERSION POUR AFFICHER LES MINUTES ET HEURE 
     def conversion(self):
         # Pour dire que le nombre est soit un nb  ou 0 
         heure_int = int(self.show_heure) if self.show_heure else 0
@@ -114,7 +112,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
         self.start_compt() 
 
         
-    # FONCTION POUR AFFICHER LE MINUTEUR 
+    # METHODE POUR AFFICHER LE MINUTEUR 
     def  start_compt(self):
 
         if self.total_seconde >= 0:
@@ -145,7 +143,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
             self.is_start = False
             self.btn.grid_forget()
             self.reset()
-            # POUR AFFICHER UNE NOTIFICATION DE FIN DE MINUTEUR 
+            # POUR AFFICHER UNE NOTIFICATION DE FIN DE MINUTEUR
             notification.notify(
                 title="Minuteur",
                 message="Temps ecoulé",
@@ -158,7 +156,7 @@ class MinuteurFrame(customtkinter.CTkFrame):
             self.after_cancel(self.id_timer)
             self.id_timer = None
 
-    # FONCTION POUR AFFICHER LE BOUTON RENITIALISER 
+    # METHODE  POUR AFFICHER LE BOUTON RENITIALISER 
     def reset(self):
         self.btn_reset = customtkinter.CTkButton(self,text="Reset",font=("Arial",15),command=self.reset_timer)
         self.btn_reset.grid(row=1,column=6,padx=(0,10),pady=(10,0))
