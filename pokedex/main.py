@@ -1,5 +1,9 @@
 import customtkinter
 import requests
+from PIL import Image,ImageTk
+import urllib.request
+import io
+
 
 # POUR RECUPERER TOUS ELS TYPES DE POKEMON 
 def get_types():
@@ -53,17 +57,30 @@ def chercher_pokemon():
     try:
 
         reponse = requests.get(url)
+        reponse.raise_for_status();
         donnees = reponse.json()
+        # Cette ligne déclenche une erreur si le Pokémon n'existe pas (Erreur 404)
         resultat_recherche.configure(state="normal")
-
+        # supprime s'il a deja du contenus dans la barre de recherche 
         resultat_recherche.delete("0.0", "end")
+
+        # recupere les information du pokemon 
         nom = donnees["name"]
         poids = donnees["weight"] / 10
         taille = donnees["height"] / 10
         identifiant = donnees["id"]
-        resultat_recherche.insert("insert",f"Nom : {nom} \n id {identifiant} \n poids : {poids} \n Taille {taille}")
+       
 
+        # on créer l'objet pour CTK 
+        resultat_recherche.configure(state="normal")
+        resultat_recherche.delete("0.0", "end")
+
+        # Insertion du nom 
+        resultat_recherche.insert("insert", f"--- {nom} ---")
+       
+        resultat_recherche.insert("insert", f"\n\nID : #{identifiant}\nPoids : {poids} kg\nTaille : {taille} m")
         resultat_recherche.configure(state="disabled")
+
     except:
         resultat_recherche.configure(state="normal")
         resultat_recherche.delete("0.0", "end")
@@ -74,26 +91,27 @@ def chercher_pokemon():
 
 app = customtkinter.CTk()
 app.title("Pokedex")
-app.geometry("600x600")
+app.geometry("1000x1000")
 
 menu_types = customtkinter.CTkOptionMenu(app,values=mes_types, command=selection_type)
-menu_types.grid(row=1,column=0,padx=20,pady=20)
+menu_types.pack(pady=20)
 
 # Création de la zone de texte disabled => empeche l'ecriture a l'interrieur de la zone 
 resultat_box = customtkinter.CTkTextbox(app,width=300,height=200, state="disabled")
-resultat_box.grid(row=2,column=0,padx=20,pady=20);
+resultat_box.pack(pady=10)
 
 # saisir les information 
 saisie_nom_pokemon = customtkinter.CTkEntry(app, placeholder_text="chercher un pokemon",width=300)
-saisie_nom_pokemon.grid(row=3,column=0,padx=20,pady=20)
+saisie_nom_pokemon.pack(pady=10)
+
 btnValidation = customtkinter.CTkButton(app,text="Rechercher",command=chercher_pokemon)
-btnValidation.grid(row=3,column=1);
+btnValidation.pack(pady=5)
 
 # resultat de la recherche de Pokemon 
-resultat_recherche = customtkinter.CTkTextbox(app,width=300,height=100, state="disabled")
-resultat_recherche.grid(row=4,column=0,padx=20,pady=20);
 
-
-
+label_result = customtkinter.CTkLabel(app, text="Fiche Pokémon :", font=("Arial", 12, "bold"))
+label_result.pack(pady=(20, 0))
+resultat_recherche = customtkinter.CTkTextbox(app,width=300,height=200, state="disabled")
+resultat_recherche.pack(pady=10)
 
 app.mainloop()
