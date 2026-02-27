@@ -98,7 +98,7 @@ def changer_page(nom_page):
 
 app = customtkinter.CTk()
 app.title("Pokedex")
-app.geometry("1000x1000")
+app.geometry("500x500")
 
 # label pour le nom de application 
 title_page = customtkinter.CTkLabel(app,text="POKEDEX",font=("Arial", 24, "bold"))
