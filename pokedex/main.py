@@ -1,8 +1,6 @@
 import customtkinter
 import requests
-from PIL import Image,ImageTk
-import urllib.request
-import io
+
 
 
 # POUR RECUPERER TOUS ELS TYPES DE POKEMON 
@@ -86,32 +84,71 @@ def chercher_pokemon():
         resultat_recherche.delete("0.0", "end")
         resultat_recherche.insert("insert", "⚠️ Erreur : Pokémon introuvable.")
         resultat_recherche.configure(state="disabled")
-    
 
+# FONCTION POUR FAIRE SWITCHER LES PAGE 
+def changer_page(nom_page):
+    # pour faire disparaitre les frames 
+    frame_page_type.pack_forget()
+    frame_page_recherche.pack_forget()
+
+    if nom_page=="type":
+        frame_page_type.pack(pady=5)
+    elif nom_page =="rechercher":
+        frame_page_recherche.pack(pady=5)
 
 app = customtkinter.CTk()
 app.title("Pokedex")
 app.geometry("1000x1000")
 
-menu_types = customtkinter.CTkOptionMenu(app,values=mes_types, command=selection_type)
-menu_types.pack(pady=20)
+# label pour le nom de application 
+title_page = customtkinter.CTkLabel(app,text="POKEDEX",font=("Arial", 24, "bold"))
+title_page.pack(pady=5)
+
+# -----------MENU DE NAVIGATION --------------------------------------------------
+# creation de la barre lateral
+navigation_frame = customtkinter.CTkFrame(app,width=300,corner_radius=0)
+navigation_frame.pack(pady=3)
+
+
+btn_type = customtkinter.CTkButton(navigation_frame,text="Type",fg_color="black")
+# lambda => parce que l'on peut passer des parametre a la fonction 
+btn_type.configure(command=lambda: changer_page("type"))
+btn_type.pack(pady=3)
+
+btn_recherche = customtkinter.CTkButton(navigation_frame,text="Recherche",fg_color="black")
+btn_recherche.configure(command=lambda: changer_page("rechercher"))
+btn_recherche.pack(pady=3)
+
+frame_page_type = customtkinter.CTkFrame(app, fg_color="transparent")
+frame_page_recherche = customtkinter.CTkFrame(app, fg_color="transparent")
+
+# -------------------TYPE DE POKEMON --------------------------
+title_type = customtkinter.CTkLabel(frame_page_type,text="Choisi un type de pokemon ",font=("Arial", 14,"bold"))
+title_type.pack(pady=3)
+# Pour les type de pokemon 
+menu_types = customtkinter.CTkOptionMenu(frame_page_type,values=mes_types, command=selection_type)
+menu_types.pack(pady=3)
 
 # Création de la zone de texte disabled => empeche l'ecriture a l'interrieur de la zone 
-resultat_box = customtkinter.CTkTextbox(app,width=300,height=200, state="disabled")
-resultat_box.pack(pady=10)
+resultat_box = customtkinter.CTkTextbox(frame_page_type,width=300,height=200, state="disabled")
+resultat_box.pack(pady=3)
+
+# ---------------------------------RECHERCHE---------------------------------------
+title_recherche = customtkinter.CTkLabel(frame_page_recherche,text="Recherche un pokemon",font=("Arial", 14,"bold"))
+title_recherche.pack(pady=3)
 
 # saisir les information 
-saisie_nom_pokemon = customtkinter.CTkEntry(app, placeholder_text="chercher un pokemon",width=300)
-saisie_nom_pokemon.pack(pady=10)
+saisie_nom_pokemon = customtkinter.CTkEntry(frame_page_recherche, placeholder_text="chercher un pokemon",width=300)
+saisie_nom_pokemon.pack(pady=3)
 
-btnValidation = customtkinter.CTkButton(app,text="Rechercher",command=chercher_pokemon)
-btnValidation.pack(pady=5)
+btnValidation = customtkinter.CTkButton(frame_page_recherche,text="rechercher",command=chercher_pokemon)
+btnValidation.pack(pady=3)
 
 # resultat de la recherche de Pokemon 
+label_result = customtkinter.CTkLabel(frame_page_recherche, text="Fiche Pokémon :", font=("Arial", 14))
+label_result.pack(pady=3)
+resultat_recherche = customtkinter.CTkTextbox(frame_page_recherche,width=300,height=200, state="disabled")
+resultat_recherche.pack(pady=3)
 
-label_result = customtkinter.CTkLabel(app, text="Fiche Pokémon :", font=("Arial", 12, "bold"))
-label_result.pack(pady=(20, 0))
-resultat_recherche = customtkinter.CTkTextbox(app,width=300,height=200, state="disabled")
-resultat_recherche.pack(pady=10)
 
 app.mainloop()
